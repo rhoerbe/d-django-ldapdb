@@ -1,6 +1,6 @@
 # Deploy django-ldapdb on Centos7
 
-This project is an starting point to deploy django-ldapdb.
+This project is a starting point to deploy django-ldapdb.
 
   git clone git@github.com:rhoerbe/d-django-ldapdb.git
   cd d-django-ldapdb

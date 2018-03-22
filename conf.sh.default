@@ -36,7 +36,9 @@ _set_buildargs() {
 
 
 _set_run_args() {
-    export ENVSETTINGS=""
+    export ENVSETTINGS="
+        ROOTPW=changeit
+    "
     export STARTCMD=''  # set to override image default
 }
 

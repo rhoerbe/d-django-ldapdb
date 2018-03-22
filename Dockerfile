@@ -45,4 +45,4 @@ RUN cd \
  && pip freeze \
  && make test
 
-
+COPY install/* /

@@ -1,0 +1,27 @@
+dn: dc=at
+objectClass: domain
+dc: at
+
+dn: dc=gv,dc=at
+objectClass: domain
+dc: gv
+
+dn: cn=Testorg, dc=gv, dc=at
+objectClass: OrganizationalUnit
+ou: Testorg
+cn: Testorg
+
+dn: ou=people, cn=Testorg, dc=gv, dc=at
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=test@bmspot.gv.at, ou=people, cn=Testorg, dc=gv, dc=at
+objectClass: inetOrgPerson
+displayName: Test User
+givenName: Test
+uid: test@bmspot.gv.at
+mail: test@bmspot.gv.at
+cn: Test User
+telephoneNumber: +43 900 777 777 7
+sn: User
+country: AT
