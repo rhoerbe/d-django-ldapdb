@@ -4,6 +4,7 @@ MAINTAINER Rainer Hörbe <r2h2@hoerbe.at>
 # Django-ldapdb with python3.4
 
 RUN yum -y update \
+ && yum -y install curl ip lsof net-tools wget which \
  && yum -y install epel-release git gcc make
 
 # install PY 3.4 from EPEL
@@ -22,6 +23,10 @@ ARG CONTAINERUID=1000
 ARG CONTAINERGID=1000
 RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
  && useradd  --non-unique --gid $CONTAINERGID --uid $CONTAINERUID $USERNAME
+
+COPY install/opt /opt
+COPY install/scripts /scripts
+RUN chmod +x /scripts/*
 
 USER $USERNAME
 
@@ -45,4 +50,4 @@ RUN cd \
  && pip freeze \
  && make test
 
-COPY install/* /
+

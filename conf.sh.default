@@ -7,7 +7,7 @@ main() {
     check_version $configlib_version
     # do_not_build $@ # uncomment this line to pull/load image
     init_sudo
-    #_set_volume_root
+    _set_volume_root
     _set_image_and_container_name
     #_set_users
     _set_buildargs
@@ -15,8 +15,16 @@ main() {
 }
 
 
-#_set_volume_root() {
-#}
+_set_volume_root() {
+    # DOCKERVOL_SHORT and DOCKERLOG_SHORT are used as
+    #  (1) root dirs for volume mappings to the file system, and
+    #  (2) as dirs to contain symlinks to docker volumes
+    DOCKERVOL_SHORT='./dv'
+    DOCKERLOG_SHORT='./dl'
+    mkdir -p $DOCKERVOL_SHORT $DOCKERLOG_SHORT
+    DOCKER_VOLUME_ROOT='/var/lib/docker/volumes'  # hard coded - check for your config if applicable!
+    DOCKER_VOL_LOG_SYMLINKS_DISABLE='True'  # unset or empty to skip symlink creation
+}
 
 
 _set_image_and_container_name() {
@@ -37,7 +45,7 @@ _set_buildargs() {
 
 _set_run_args() {
     export ENVSETTINGS="
-        ROOTPW=changeit
+        -e ROOTPW=changeit
     "
     export STARTCMD=''  # set to override image default
 }
@@ -53,7 +61,11 @@ setup_vol_mapping() {
     export VOLLIST=''
     export VOLMAPPING=''
     #create_user $CONTAINERUSER $CONTAINERUID
-    #map_host_directory "$DOCKERLOG_SHORT/var/log/" '/var/log/' 'Z'
+
+    ## uncomment following lines to make configuration, data and logs persistent:
+    #map_docker_volume $mode "${CONTAINERNAME}.db" '/var/db' 'Z' $DOCKERVOL_SHORT
+    #map_docker_volume $mode "${CONTAINERNAME}.etc" '/etc/openldap' 'Z' $DOCKERVOL_SHORT
+    #map_docker_volume $mode "${CONTAINERNAME}.log" '/var/log/openldap' 'Z' $DOCKERLOG_SHORT
 }
 
 

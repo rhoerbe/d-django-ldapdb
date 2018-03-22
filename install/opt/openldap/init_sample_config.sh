@@ -1,6 +1,6 @@
 #!/bin/sh
 # initialize slapd.conf
-
+cp /opt/openldap/slapd.conf /etc/openldap
 if [ $(grep -q '^rootpw' /etc/openldap/slapd.conf) ]; then
     echo "rootpw directive already set in slapd.conf"
 else
