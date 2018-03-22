@@ -42,7 +42,7 @@ RUN cd \
  && git clone https://github.com/django-ldapdb/django-ldapdb \
  && cd django-ldapdb \
  && pip install -r requirements_dev.txt \
- && pip freeze
+ && pip freeze \
+ && make test
 
-RUN make test
 
