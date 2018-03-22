@@ -13,7 +13,7 @@ RUN yum -y update \
 # install py3.5 from IUS
 RUN yum -y install https://centos7.iuscommunity.org/ius-release.rpm \
  && yum -y install python35u python35u-setuptools python35u-devel python35u-pip \
- && yum -y install openldap-devel \
+ && yum -y install openldap-servers openldap-clients openldap-devel \
  && yum clean all
 
 
@@ -25,7 +25,7 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 
 USER $USERNAME
 
-# setup virtual env
+# setup virtual env with previously installed python
 # install pyroma>=2.4.dev0 because of https://github.com/regebro/pyroma/issues/12
 # install django-ldapdb
 RUN cd \
