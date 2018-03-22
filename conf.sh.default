@@ -1,59 +1,66 @@
 #!/usr/bin/env bash
 
-# settings for docker build, run and exec
-
 main() {
     SCRIPTDIR=$(cd $(dirname $BASH_SOURCE[0]) && pwd)
-    source $SCRIPTDIR/dscripts/conf_lib.sh  # load library functions
-
+    source $SCRIPTDIR/dscripts/conf_lib.sh  $@         # load library functions
+    configlib_version=2  # compatible version of conf_lib.sh
+    check_version $configlib_version
+    # do_not_build $@ # uncomment this line to pull/load image
     init_sudo
-    #set_volume_root
-    set_image_and_container_name
-    set_users
-    #set_buildargs
-    #set_run_args
-    set_network
-    set_vol_mapping
+    #_set_volume_root
+    _set_image_and_container_name
+    #_set_users
+    _set_buildargs
+    _set_run_args
 }
 
 
-#set_volume_root() {
+#_set_volume_root() {
 #}
 
 
-set_image_and_container_name() {
+_set_image_and_container_name() {
     PROJSHORT='django-ldap'
     export IMAGENAME="rhoerbe/$PROJSHORT"  # [a-z_0-9]
     export CONTAINERNAME="$PROJSHORT"
 }
 
 
-set_users() {
-    export START_AS_ROOT=      # 'True' (e.g. for apache to fall back to www user)
-}
+#_set_users() {
+#}
 
 
-set_buildargs() {
+_set_buildargs() {
     export BUILDARGS=""
 }
 
 
-set_run_args() {
+_set_run_args() {
     export ENVSETTINGS=""
-    export STARTCMD='/bin/bash'  # unset or blank to use image default
+    export STARTCMD=''  # set to override image default
 }
 
 
-set_network() {
+create_intercontainer_network() {
     export NETWORKSETTINGS="--net=host"
 }
 
 
-set_vol_mapping() {
-    VOLLIST=''
-    VOLMAPPING=''
-    # map_host_directory "$PWD" '/host_cd/' 'rw'  # on target systems with dockerd --selinux-enable map dedicated volume
+setup_vol_mapping() {
+    mode=$1  # create (used by run.sh)/list (used by manage.sh)
+    export VOLLIST=''
+    export VOLMAPPING=''
+    #create_user $CONTAINERUSER $CONTAINERUID
+    #map_host_directory "$DOCKERLOG_SHORT/var/log/" '/var/log/' 'Z'
 }
+
+
+container_status() {
+    $sudo docker ps | head -1
+    $sudo docker ps --all | egrep $CONTAINERNAME\$
+    #$sudo docker exec -it $CONTAINERNAME /scripts/status.sh
+}
+
 
 
 main $@
