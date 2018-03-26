@@ -6,7 +6,7 @@ main() {
     /scripts/start_slapd.sh &
     wait_for_slapd_started
     init_sample_data
-    terminate_slapd
+    #terminate_slapd
 }
 
 
@@ -37,13 +37,17 @@ init_sample_data() {
 
     rootdn=$(grep ^rootdn /etc/openldap/slapd.conf | awk {'print $2'} | tr -d '"')
 
-    ldapadd -h localhost -p ${SLAPDPORT:-8389} \
+    ldapadd -H ldap://localhost:${SLAPDPORT:-8389} \
         -x -D $rootdn -w $ROOTPW \
-        -c -f /opt/openldap/gvAt_init.ldif
+        -c -f /opt/openldap/ldap_init.ldif
 
-    ldappasswd -h localhost -p ${SLAPDPORT:-8389} \
+    ldappasswd -H ldap://localhost:${SLAPDPORT:-8389} \
         -x -D $rootdn -w $ROOTPW \
         -s 'test' 'uid=test@bmspot.gv.at,ou=people,cn=Testorg,dc=gv,dc=at'
+
+    ldapsearch -h ldap://localhost:8389 \
+        -x -D $rootdn -w $ROOTPW \
+        "objectclass=*"
 }
 
 

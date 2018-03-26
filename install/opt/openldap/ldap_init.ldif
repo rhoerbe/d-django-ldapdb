@@ -9,7 +9,6 @@ dc: gv
 dn: ou=Testorg, dc=gv, dc=at
 objectClass: OrganizationalUnit
 ou: Testorg
-ou: Testorg
 
 dn: ou=people, ou=Testorg, dc=gv, dc=at
 objectClass: organizationalUnit
