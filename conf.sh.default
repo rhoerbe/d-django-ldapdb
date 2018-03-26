@@ -52,7 +52,7 @@ _set_run_args() {
 
 
 create_intercontainer_network() {
-    export NETWORKSETTINGS="--net=host"
+    export NETWORKSETTINGS="-p 8000:8000"
 }
 
 
@@ -61,6 +61,7 @@ setup_vol_mapping() {
     export VOLLIST=''
     export VOLMAPPING=''
     #create_user $CONTAINERUSER $CONTAINERUID
+
 
     ## uncomment following lines to make configuration, data and logs persistent:
     #map_docker_volume $mode "${CONTAINERNAME}.db" '/var/db' 'Z' $DOCKERVOL_SHORT
