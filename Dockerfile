@@ -27,7 +27,8 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 COPY install/opt /opt
 COPY install/scripts /scripts
 RUN chmod +x /scripts/* \
- && chown $USERNAME /etc/openldap
+ && mkdir /var/db/openldap /var/log/openldap \
+ && chown $USERNAME /etc/openldap /var/db/openldap /var/log/openldap
 
 USER $USERNAME
 
@@ -52,3 +53,4 @@ RUN cd \
  && make test
 
 
+EXPOSE 8000
