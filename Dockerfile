@@ -26,7 +26,8 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 
 COPY install/opt /opt
 COPY install/scripts /scripts
-RUN chmod +x /scripts/*
+RUN chmod +x /scripts/* \
+ && chown $USERNAME /etc/openldap
 
 USER $USERNAME
 

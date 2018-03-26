@@ -2,7 +2,6 @@
 
 # dev only
 
-cd
-source virtenv/bin/activate
-cd django-ldapdb
+source /scripts/setenv_django.sh
+cd $HOME/django_ldap
 python manage_dev.py runserver
