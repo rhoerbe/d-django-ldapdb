@@ -39,7 +39,7 @@ init_sample_data() {
 
     ldapadd -h localhost -p ${SLAPDPORT:-8389} \
         -x -D $rootdn -w $ROOTPW \
-        -f /opt/openldap/gvAt_init.ldif
+        -c -f /opt/openldap/gvAt_init.ldif
 
     ldappasswd -h localhost -p ${SLAPDPORT:-8389} \
         -x -D $rootdn -w $ROOTPW \
