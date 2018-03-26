@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 source /scripts/setenv_django.sh
-cd $HOME/django-ldapdb
-python manage_dev.py makemigrations
-python manage_dev.py migrate
+cd $PROJHOME
+python manage.py makemigrations
+python manage.py migrate
+cd $PROJHOME
 python /scripts/createsuperuser_test.py
 

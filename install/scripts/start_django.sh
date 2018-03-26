@@ -3,5 +3,5 @@
 # dev only
 
 source /scripts/setenv_django.sh
-cd $HOME/django-ldapdb
+cd $PROJHOME
 python manage_dev.py runserver

@@ -61,7 +61,7 @@ setup_vol_mapping() {
 
 
     ## uncomment following lines to make configuration, data and logs persistent:
-    #map_docker_volume $mode "${CONTAINERNAME}.var_db_openldap" '/var/db' 'Z' $DOCKERVOL_SHORT
+    #map_docker_volume $mode "${CONTAINERNAME}.var_db_openldap" '/var/db/openldap' 'Z' $DOCKERVOL_SHORT
     #map_docker_volume $mode "${CONTAINERNAME}.etc_openldap" '/etc/openldap' 'Z' $DOCKERVOL_SHORT
     #map_docker_volume $mode "${CONTAINERNAME}.var_log_openldap" '/var/log/openldap' 'Z' $DOCKERLOG_SHORT
 }

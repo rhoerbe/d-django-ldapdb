@@ -10,14 +10,14 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'ldapdb.db',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
-    },
-    'ldap': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': 'ldapdb.db',
+#        'USER': '',
+#        'PASSWORD': '',
+#        'HOST': '',
+#        'PORT': '',
+#    },
+#    'ldap': {
         'ENGINE': 'ldapdb.backends.ldap',
         'NAME': 'ldap://localhost:8389',
         'USER': 'cn=admin,dc=at',
@@ -28,7 +28,7 @@ DATABASES = {
         }
     }
 }
-DATABASE_ROUTERS = ['ldapdb.router.Router']
+#DATABASE_ROUTERS = ['ldapdb.router.Router']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

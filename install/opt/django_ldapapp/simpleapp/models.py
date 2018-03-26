@@ -9,19 +9,16 @@ from ldapdb.models.fields import CharField, ImageField, IntegerField, ListField
 
 
 class LdapUser(ldapdb.models.Model):
-    """
-    Class for representing an LDAP user entry.
-    """
     # LDAP meta-data
     base_dn = "dc=at"
     object_classes = ['inetOrgPerson']
 
-    #ordering = ['last_name']
-    # inetOrgPerson
     first_name = CharField(db_column='givenName')
     last_name = CharField("surname", db_column='sn')
     full_name = CharField(db_column='cn')
     email = CharField(db_column='mail')
+
+    #ordering = ['last_name']
 
 
     def __str__(self):

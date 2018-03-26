@@ -27,8 +27,8 @@ RUN groupadd --non-unique -g $CONTAINERGID $USERNAME \
 COPY install/opt /opt
 COPY install/scripts /scripts
 RUN chmod +x /scripts/* \
- && mkdir -p /var/db/openldap /var/log/openldap /var/run/openldap \
- && chown $USERNAME /etc/openldap /opt/django_ldap /var/db/openldap /var/log/openldap /var/run/openldap
+ && mkdir -p /opt/django_ldapapp /var/db/openldap /var/log/openldap /var/run/openldap \
+ && chown -R $USERNAME /etc/openldap /opt/django_ldapapp /var/db/openldap /var/log/openldap /var/run/openldap
 
 USER $USERNAME
 

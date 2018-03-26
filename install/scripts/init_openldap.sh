@@ -4,7 +4,7 @@
 main() {
     init_sample_config
     /scripts/start_slapd.sh &
-    wait_for_slapd
+    wait_for_slapd_started
     init_sample_data
     terminate_slapd
 }
@@ -25,9 +25,9 @@ init_sample_config() {
 }
 
 
-wait_for_slapd() {
+wait_for_slapd_started() {
     while ! netstat -tnap | grep "127.0.0.1:${SLAPDPORT:-8389}"; do
-        sleep 1;
+        sleep 2;
     done
 }
 
@@ -49,6 +49,9 @@ init_sample_data() {
 
 terminate_slapd() {
     kill $(cat /var/run/openldap/slapd.pid)
+    while netstat -tnap | grep "127.0.0.1:${SLAPDPORT:-8389}"; do
+        sleep 2;
+    done
 }
 
 
