@@ -10,14 +10,14 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': 'ldapdb.db',
-#        'USER': '',
-#        'PASSWORD': '',
-#        'HOST': '',
-#        'PORT': '',
-#    },
-#    'ldap': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': 'ldapdb.db',
+       'USER': '',
+       'PASSWORD': '',
+       'HOST': '',
+       'PORT': '',
+   },
+   'ldap': {
         'ENGINE': 'ldapdb.backends.ldap',
         'NAME': 'ldap://localhost:8389',
         'USER': 'cn=admin,dc=at',
