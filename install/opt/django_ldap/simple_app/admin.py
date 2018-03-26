@@ -7,7 +7,7 @@ from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import FilteredSelectMultiple
 
-from examples.models import LdapUser
+from simpleapp.models import LdapUser
 
 
 class LdapUserAdmin(admin.ModelAdmin):

@@ -19,7 +19,7 @@ DATABASES = {
     },
     'ldap': {
         'ENGINE': 'ldapdb.backends.ldap',
-        'NAME': 'ldap://localhost',
+        'NAME': 'ldap://localhost:8389',
         'USER': 'cn=admin,dc=at',
         'PASSWORD': 'changeit',
         # 'TLS': ,
@@ -66,17 +66,19 @@ MEDIA_URL = ''
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'some_random_secret_key'
+SECRET_KEY = 'some_random_secret_key_n$6iyp7qd30)542@szdg&*oev#9b$*'
 
 MIDDLEWARE = [
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'examples.urls'
+ROOT_URLCONF = 'simpleapp.urls'
 
 STATIC_URL = '/static/'
 
@@ -104,6 +106,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'ldapdb',
-    'examples',
+    'simpleapp',
     'django.contrib.admin',
 )

@@ -8,3 +8,4 @@ u.set_password('changeit')
 u.is_superuser = True
 u.is_staff = True
 u.save()
+print('User admin created and password set')
