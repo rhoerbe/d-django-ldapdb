@@ -4,4 +4,4 @@
 
 source /scripts/setenv_django.sh
 cd $PROJHOME
-python manage_dev.py runserver
+python manage.py runserver
