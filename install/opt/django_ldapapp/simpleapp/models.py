@@ -16,7 +16,7 @@ class LdapUser(ldapdb.models.Model):
     first_name = CharField(db_column='givenName')
     last_name = CharField("surname", db_column='sn')
     full_name = CharField(db_column='cn')
-    email = CharField(db_column='mail')
+    email = CharField(db_column='mail', primary_key=True)
 
     #ordering = ['last_name']
 
